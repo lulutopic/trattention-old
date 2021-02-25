@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./library/libs/ThinkGear.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library/libs/ThinkGear.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
