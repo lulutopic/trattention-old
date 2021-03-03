@@ -11,7 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Registration"></activity>
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login"><!-- 初始畫面加上這段 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".AttentionTestResult" />
         <activity android:name=".AttentionTesting" />
@@ -31,15 +38,7 @@
         <activity android:name=".SchulteGridMed" />
         <activity android:name=".SchulteGridPro" />
         <activity android:name=".Personal" />
-        <activity android:name=".Hello">
-            <!-- 初始畫面加上這段 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Hello"></activity>
         <activity android:name=".Home" />
         <activity android:name=".InstructionHome">
 
