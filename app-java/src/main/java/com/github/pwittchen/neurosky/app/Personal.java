@@ -5,50 +5,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Personal extends AppCompatActivity {
 
-    Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //隱藏title
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+
         setContentView(R.layout.activity_personal);
-        //設定隱藏標題
-        getSupportActionBar().hide();
 
-
-
-    }
-
-}
-
-    /*//頁面跳轉  點選確定->回到主頁面
-    Button button1 = findViewById(R.id.sure);
-        button1.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-        Intent intent=new Intent();
-        intent.setClass(personal.this, home.class);
-        startActivity(intent);
-        }
+        //header:頁面跳轉->回首頁
+        ImageView btn_home=(ImageView)findViewById(R.id.imagehome);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Personal.this , Home.class);
+                startActivity(intent);
+            }
         });
 
-        //switch開關
-        aSwitch=(Switch)findViewById(R.id.switch1);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-@Override
-public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked == true){
-        Toast.makeText(getBaseContext(),"On",Toast.LENGTH_SHORT).show();
-        }else{
-        Toast.makeText(getBaseContext(),"OFF",Toast.LENGTH_SHORT).show();
-        }
-
-        }
-        });*/
+        //header:頁面跳轉->指南
+        ImageView btn_safari=(ImageView)findViewById(R.id.imagesafari);
+        btn_safari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Personal.this , InstructionHome.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
