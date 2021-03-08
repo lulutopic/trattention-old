@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Timer;
 
 
 public class MemoryGamePro extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class MemoryGamePro extends AppCompatActivity {
     int clickedFirst,clickedSecond;
     int cardNumber=1;
     int questionCount = 0;
+    Timer timertest = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MemoryGamePro extends AppCompatActivity {
         questionArray[8] =0;
         //設定第一題
         questionCard = questionArray[questionCount];
+
 
 
         //game
@@ -416,7 +419,7 @@ public class MemoryGamePro extends AppCompatActivity {
                 iv_42.getVisibility() == View.INVISIBLE &&
                 iv_43.getVisibility() == View.INVISIBLE &&
                 iv_44.getVisibility() == View.INVISIBLE) {
-
+            timertest.cancel();
             //頁面跳轉
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGamePro.this);
             alertDialogBuilder
