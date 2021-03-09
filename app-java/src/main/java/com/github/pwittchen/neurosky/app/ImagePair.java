@@ -141,6 +141,7 @@ public class ImagePair extends AppCompatActivity {
 
     private void checkEnd(){
         if(count == 5){
+            handler.removeCallbacks(updateTimer);
             //頁面跳轉
             Intent intent = new Intent();
             intent.setClass(ImagePair.this, Home.class);
@@ -152,13 +153,6 @@ public class ImagePair extends AppCompatActivity {
 
     private void deter(){
         int col = colorTextView.getCurrentTextColor();
-        Log.d("hi","hi"+col);
-        Log.d("hi","hi"+R.color.colorRed);
-        Log.d("hi","hi"+R.color.colorGreen);
-        Log.d("hi","hi"+R.color.colorBlue);
-        Log.d("hi","hi"+red);
-        Log.d("hi","hi"+green);
-        Log.d("hi","hi"+blue);
         if (col == -571050){
             colorTextView.setTag("紅色");
             Log.d("MyTagGoesHere", "我在紅色裡面");
