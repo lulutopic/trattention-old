@@ -49,7 +49,7 @@ public class SchulteGridPro extends AppCompatActivity {
         getSupportActionBar().hide();
         timer = (Chronometer) findViewById(R.id.timer);
         //取得目前時間
-        startTime = System.currentTimeMillis();
+        startTime= getIntent().getLongExtra("time",0);
         //設定定時要執行的方法
         handler.removeCallbacks(updateTimer);
         //設定Delay的時間

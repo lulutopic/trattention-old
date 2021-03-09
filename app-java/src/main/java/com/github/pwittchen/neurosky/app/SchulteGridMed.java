@@ -46,8 +46,8 @@ public class SchulteGridMed extends AppCompatActivity {
         //設定隱藏標題
         getSupportActionBar().hide();
         timer = (Chronometer) findViewById(R.id.timer);
-        //取得目前時間
-        startTime = System.currentTimeMillis();
+        //接續前段時間
+        startTime= getIntent().getLongExtra("time",0);
         //設定定時要執行的方法
         handler.removeCallbacks(updateTimer);
         //設定Delay的時間
@@ -240,7 +240,7 @@ public class SchulteGridMed extends AppCompatActivity {
             //計算目前已過小時數
             Long hour = (spentTime/1000)/3600;
             //計算目前已過分鐘數
-            Long minius = (spentTime/1000)/60;
+            Long minius = ((spentTime/1000)/60) % 60;
             //計算目前已過秒數
             Long seconds = (spentTime/1000) % 60;
             String formattedTime = String.format("%02d:%02d:%02d",hour, minius, seconds);
