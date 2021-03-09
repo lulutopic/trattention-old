@@ -23,7 +23,7 @@ public class ImagePair extends AppCompatActivity {
 
     private Long startTime; //初始時間
     private Chronometer timer; //已經過時間
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(); //計時器的執行緒
 
 
     private ArrayList<String> colorNames = new ArrayList<>();
@@ -155,15 +155,12 @@ public class ImagePair extends AppCompatActivity {
         int col = colorTextView.getCurrentTextColor();
         if (col == -571050){
             colorTextView.setTag("紅色");
-            Log.d("MyTagGoesHere", "我在紅色裡面");
         }
         else if (col == -5973084){
             colorTextView.setTag("綠色");
-            Log.d("MyTagGoesHere", "我在綠色裡面");
         }
         else{
             colorTextView.setTag("藍色");
-            Log.d("MyTagGoesHere", "我在藍色裡面");
         }
     }
 

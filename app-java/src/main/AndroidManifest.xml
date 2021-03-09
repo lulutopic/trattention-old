@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.pwittchen.neurosky.app">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="false"
@@ -10,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- 圖形配對 -->
-        <activity android:name=".ImagePair">
+        <activity
+            android:name=".ImagePair"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +25,6 @@
         </activity>
         <activity
             android:name=".Registration"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Login"
             android:screenOrientation="landscape">
 
             <!-- 初始畫面加上這段 -->
@@ -33,6 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Login"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".AttentionTestResult"
             android:screenOrientation="landscape" />
