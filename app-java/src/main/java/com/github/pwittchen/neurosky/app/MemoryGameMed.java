@@ -49,8 +49,8 @@ public class MemoryGameMed extends AppCompatActivity {
         timer = (Chronometer) findViewById(R.id.timer);
         //接續前段時間
         startTime= getIntent().getLongExtra("time",0);
-        //設定定時要執行的方法
-        handler.removeCallbacks(updateTimer);
+
+
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
 

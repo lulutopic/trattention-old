@@ -54,7 +54,7 @@ public class MemoryGamePro extends AppCompatActivity {
         //接續前段時間
         startTime= getIntent().getLongExtra("time",0);
         //設定定時要執行的方法
-        handler.removeCallbacks(updateTimer);
+
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
         //題目洗牌
@@ -419,7 +419,7 @@ public class MemoryGamePro extends AppCompatActivity {
                 iv_42.getVisibility() == View.INVISIBLE &&
                 iv_43.getVisibility() == View.INVISIBLE &&
                 iv_44.getVisibility() == View.INVISIBLE) {
-            timertest.cancel();
+            handler.removeCallbacks(updateTimer);
             //頁面跳轉
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGamePro.this);
             alertDialogBuilder

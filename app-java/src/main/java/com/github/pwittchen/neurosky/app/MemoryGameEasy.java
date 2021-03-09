@@ -53,16 +53,10 @@ public class MemoryGameEasy extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             /*   Intent intent=new Intent();
-                intent.setClass(MemoryGameEasy.this, GameStopButton.class);
-                startActivity(intent);*/
-
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGameEasy.this);
                 LayoutInflater inflater = MemoryGameEasy.this.getLayoutInflater();
                 alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_stop_button, null));
                 alertDialogBuilder
-
-
                         .setNeutralButton("離開",new DialogInterface.OnClickListener(){
                             @Override
                             public void onClick(DialogInterface dialogInterface,int i){
@@ -70,13 +64,26 @@ public class MemoryGameEasy extends AppCompatActivity {
                                 intent.setClass(MemoryGameEasy.this,GameHome.class);
                                 startActivity(intent);
                                 finish();
+
                             }
                         });
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
         });
-        //暫停彈跳視窗的部分
+        ImageView button5 = findViewById(R.id.imagetips);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGameEasy.this);
+                LayoutInflater inflater = MemoryGameEasy.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_memory_tips, null));
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
 
 
         //設定隱藏標題
@@ -84,8 +91,7 @@ public class MemoryGameEasy extends AppCompatActivity {
         timer = (Chronometer) findViewById(R.id.timer);
         //取得目前時間
         startTime = System.currentTimeMillis();
-        //設定定時要執行的方法
-        handler.removeCallbacks(updateTimer);
+
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
 

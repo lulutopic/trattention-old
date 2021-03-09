@@ -1,8 +1,10 @@
 package com.github.pwittchen.neurosky.app;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -140,16 +142,43 @@ public class ImagePair extends AppCompatActivity {
     }
 
     private void checkEnd(){
-        if(count == 5){
+        if(count == 10){
             handler.removeCallbacks(updateTimer);
             //頁面跳轉
-            Intent intent = new Intent();
+           /* Intent intent = new Intent();
             intent.setClass(ImagePair.this, Home.class);
             intent.putExtra("time",startTime);
             startActivity(intent);
-            finish();
+            finish();*/
+              AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ImagePair.this);
+            alertDialogBuilder
+                    .setMessage("恭喜!遊戲結束~")
+                    .setCancelable(false)
+                    .setPositiveButton("查看結果",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface,int i){
+                            Intent intent = new Intent();
+                            intent.setClass(ImagePair.this, GameResult.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("離開",new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialogInterface,int i){
+                            Intent intent = new Intent();
+                            intent.setClass(ImagePair.this, GameHome.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
+
+
+
 
     private void deter(){
         int col = colorTextView.getCurrentTextColor();
