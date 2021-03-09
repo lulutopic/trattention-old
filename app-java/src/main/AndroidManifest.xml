@@ -17,23 +17,13 @@
         <activity
             android:name=".ImagePair"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Registration"
             android:screenOrientation="landscape">
 
-            <!-- 初始畫面加上這段 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Login"
@@ -64,7 +54,15 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".MemoryGameEasy"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" >
+        <!-- 初始畫面加上這段 -->
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".MemoryGameMed"
             android:screenOrientation="landscape" />
