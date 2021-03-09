@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -47,14 +48,23 @@ public class MemoryGamePro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_game_hard);
+        ImageView button5 = findViewById(R.id.imagetips);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGamePro.this);
+                LayoutInflater inflater = MemoryGamePro.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_memory_tips, null));
 
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
         //設定隱藏標題
         getSupportActionBar().hide();
         timer = (Chronometer) findViewById(R.id.timer);
         //接續前段時間
         startTime= getIntent().getLongExtra("time",0);
-        //設定定時要執行的方法
-
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
         //題目洗牌
