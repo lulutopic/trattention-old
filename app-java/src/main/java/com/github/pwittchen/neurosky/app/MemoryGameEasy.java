@@ -4,6 +4,7 @@ package com.github.pwittchen.neurosky.app;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -52,48 +53,32 @@ public class MemoryGameEasy extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
+             /*   Intent intent=new Intent();
                 intent.setClass(MemoryGameEasy.this, GameStopButton.class);
-                startActivity(intent);
+                startActivity(intent);*/
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGameEasy.this);
+                LayoutInflater inflater = MemoryGameEasy.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_stop_button, null));
+                alertDialogBuilder
+
+
+                        .setNeutralButton("離開",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface,int i){
+                                Intent intent = new Intent();
+                                intent.setClass(MemoryGameEasy.this,GameHome.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
         //暫停彈跳視窗的部分
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MemoryGameEasy.this);
-        LayoutInflater inflater = MemoryGameEasy.this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.activity_game_stop_button, null));
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        //頁面跳轉
-        /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MemoryGame.this);
-        LayoutInflater inflater = MemoryGame.this.getLayoutInflater();
-        alertDialogBuilder.setView(inflater.inflate(R.layout.activity_stop_button, null));
-        alertDialogBuilder
-
-                .setMessage("恭喜!遊戲結束~")
-                .setCancelable(false)
-                .setNeutralButton("查看結果",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface,int i){
-                        Intent intent = new Intent();
-                        intent.setClass(MemoryGame.this,gameresult.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                })
-                .setNeutralButton("離開",new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface,int i){
-                        Intent intent = new Intent();
-                        intent.setClass(MemoryGame.this,gameselect.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-*/
         //設定隱藏標題
         getSupportActionBar().hide();
         timer = (Chronometer) findViewById(R.id.timer);
