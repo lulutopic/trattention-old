@@ -136,7 +136,6 @@
 .idea/workspace.xml
 .gradle/5.6.4/executionHistory/executionHistory.lock
 local.properties
-*.xml
 .gradle/5.6.4/executionHistory/executionHistory.lock
 .gradle/5.6.4/fileHashes/fileHashes.lock
 .idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml
