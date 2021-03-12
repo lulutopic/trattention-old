@@ -25,16 +25,14 @@ public class ImagePair extends AppCompatActivity {
 
     private Long startTime; //初始時間
     private Chronometer timer; //已經過時間
-    private Handler handler = new Handler(); //計時器的執行緒
+    private Handler handler = new Handler(); //計時器的執行緒宣告
 
 
-    private ArrayList<String> colorNames = new ArrayList<>();
-    private ArrayList<Integer> colorValues = new ArrayList<>();
-    private ArrayList<TextView> button = new ArrayList<>();
+    private ArrayList<String> colorNames = new ArrayList<>(); //文字意思的顏色
+    private ArrayList<Integer> colorValues = new ArrayList<>(); //文字真正的底色
+    private ArrayList<TextView> button = new ArrayList<>(); // ABC選項
 
-    private Random random;
-
-    private TextView colorTextView;
+    private TextView colorTextView; // 題目的文字
 
     private int red;
     private int blue;
@@ -45,7 +43,7 @@ public class ImagePair extends AppCompatActivity {
     private TextView ImageButtonB;
     private TextView ImageButtonC;
 
-    int count = 0;
+    int count = 0; //計算遊戲答對題數
 
 
     @Override
@@ -54,14 +52,16 @@ public class ImagePair extends AppCompatActivity {
         setContentView(R.layout.activity_image_pair);
         //設定隱藏標題
         getSupportActionBar().hide();
+        //計時器
         timer = (Chronometer) findViewById(R.id.timer);
         //取得目前時間
         startTime = System.currentTimeMillis();
-        //設定定時要執行的方法
+        //計時器執行緒停止
         handler.removeCallbacks(updateTimer);
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
-        random = new Random();
+
+        //呼叫函式
         populateBothArraylists();
         getRandomColor();
         deter();
@@ -69,15 +69,16 @@ public class ImagePair extends AppCompatActivity {
 
     }
 
+    //監聽事件的函式
     private void setupViewsAndListeners(){
-
+        //選項Ａ的監聽事件
         ImageButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
+            //設定點擊事件
             public void onClick(View v){
-
-                //Get color of drawable.
+                //回傳題目的文字底色的文字標籤
                 String TagA = (String) colorTextView.getTag();
-
+                //如果選項Ａ的文字意思等於標籤Ａ
                 if(ImageButtonA.getText() == TagA){
                     count++;
                     getRandomColor();
@@ -86,11 +87,14 @@ public class ImagePair extends AppCompatActivity {
                 }
             }
         });
-        ImageButtonB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                String TagB = (String) colorTextView.getTag();
 
+        ImageButtonB.setOnClickListener(new View.OnClickListener(){
+            //選項Ｂ的監聽事件
+            @Override
+            //設定點擊事件
+            public void onClick(View v){
+                //如果選項Ｂ的文字意思等於標籤Ｂ
+                String TagB = (String) colorTextView.getTag();
                 if(ImageButtonB.getText() == TagB){
                     count++;
                     getRandomColor();
@@ -99,11 +103,14 @@ public class ImagePair extends AppCompatActivity {
                 }
             }
         });
-        ImageButtonC.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                String TagC = (String) colorTextView.getTag();
 
+        ImageButtonC.setOnClickListener(new View.OnClickListener(){
+            //選項Ｃ的監聽事件
+            @Override
+            //設定點擊事件
+            public void onClick(View v){
+                //如果選項Ｂ的文字意思等於標籤Ｃ
+                String TagC = (String) colorTextView.getTag();
                 if(ImageButtonC.getText() == TagC){
                     count++;
                     getRandomColor();
@@ -114,43 +121,36 @@ public class ImagePair extends AppCompatActivity {
         });
     }
 
+    //三個串列的隨機排列
     private void getRandomColor(){
-
-
-
-//      Add a bit more randomness
+        //Collections.shuffle 隨機排列三個串列
         Collections.shuffle(colorNames);
         Collections.shuffle(colorValues);
         Collections.shuffle(button);
 
-        //using a random number to get a random color from the arrayList
+        //colorChosen 取出colorNames裡的資料 當作題目的文字
         String colorChosen1 = colorNames.get(0);
         String colorChosen2 = colorNames.get(1);
         String colorChosen3 = colorNames.get(2);
 
-        //set this random color to be the text that is shown at the bottom
+        //setText 將文字設定給 題目 and 答案
         colorTextView.setText(colorChosen1);
         button.get(0).setText(colorChosen1);
         button.get(1).setText(colorChosen2);
         button.get(2).setText(colorChosen3);
 
-        //chose an actual color to be randomly generated for the text
+        //setTextColor 設定文字底色給 題目 and 答案
         colorTextView.setTextColor(colorValues.get(0));
         button.get(0).setTextColor(colorValues.get(0));
         button.get(1).setTextColor(colorValues.get(1));
         button.get(2).setTextColor(colorValues.get(2));
     }
-
+    //檢查是否遊戲完成並且題目跳轉
     private void checkEnd(){
         if(count == 10){
-            handler.removeCallbacks(updateTimer);
-            //頁面跳轉
-           /* Intent intent = new Intent();
-            intent.setClass(ImagePair.this, Home.class);
-            intent.putExtra("time",startTime);
-            startActivity(intent);
-            finish();*/
-              AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ImagePair.this);
+            handler.removeCallbacks(updateTimer);//停止計時器的執行緒
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ImagePair.this);
             alertDialogBuilder
                     .setMessage("恭喜!遊戲結束~")
                     .setCancelable(false)
@@ -177,9 +177,7 @@ public class ImagePair extends AppCompatActivity {
         }
     }
 
-
-
-
+    //幫顏色設定標籤（判斷文字底色是否等於colorValues裡的顏色）
     private void deter(){
         int col = colorTextView.getCurrentTextColor();
         if (col == -571050){
@@ -193,7 +191,7 @@ public class ImagePair extends AppCompatActivity {
         }
     }
 
-
+    //接前端的id
     private void populateBothArraylists(){
         //question
         colorTextView = (TextView) findViewById(R.id.question);
@@ -203,35 +201,32 @@ public class ImagePair extends AppCompatActivity {
         ImageButtonB = (TextView)findViewById(R.id.optionB);
         ImageButtonC = (TextView) findViewById(R.id.optionC);
 
-        //add color names to the ArrayList
+        //把顏色字串加入coloNames ArrayLists
         colorNames.add("紅色");
         colorNames.add("綠色");
         colorNames.add("藍色");
 
+        //把放在color.xml裡面的顏色指定給相對應的變數
         red = R.color.colorRed;
         green = R.color.colorGreen;
         blue = R.color.colorBlue;
 
         //Add color values to the arraylist [-571050, -5973084, -9328385]
-
         colorValues.add(ContextCompat.getColor(this,red));
         colorValues.add(ContextCompat.getColor(this,green));
         colorValues.add(ContextCompat.getColor(this,blue));
 
-
+        //把ＡＢＣ選項加入到button ArrayLists
         button.add(ImageButtonA);
         button.add(ImageButtonB);
         button.add(ImageButtonC);
-
-
-
     }
 
 
 
 
 
-    //固定要執行的方法
+    //計時器的計時方法
     private Runnable updateTimer = new Runnable() {
         public void run() {
             final TextView time = (Chronometer) findViewById(R.id.timer);
