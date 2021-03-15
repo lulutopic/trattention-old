@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -22,22 +23,12 @@ public class SchulteGridPro extends AppCompatActivity {
     private Chronometer timer;
     private Handler handler = new Handler();
 
-
-
     //圖片的id設定的變數
     ImageView one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen;
-
 
     int[] ImageArray = {R.drawable.grid1,R.drawable.grid2,R.drawable.grid3,R.drawable.grid4,R.drawable.grid5,R.drawable.grid6,R.drawable.grid7
             ,R.drawable.grid8,R.drawable.grid9,R.drawable.grid10,R.drawable.grid11,R.drawable.grid12,R.drawable.grid13,R.drawable.grid14
             ,R.drawable.grid15,R.drawable.grid16};
-
-
-
-
-    //array for the images
-
-
 
     int count = 0;
 
@@ -50,12 +41,51 @@ public class SchulteGridPro extends AppCompatActivity {
         timer = (Chronometer) findViewById(R.id.timer);
         //取得目前時間
         startTime= getIntent().getLongExtra("time",0);
-        //設定定時要執行的方法
+        //設定計時器的執行緒結束
         handler.removeCallbacks(updateTimer);
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
 
-        //game
+        //暫停按鈕的觸發事件
+        ImageView button4 = findViewById(R.id.imagepause);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SchulteGridPro.this);
+                LayoutInflater inflater = SchulteGridPro.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_stop_button, null));
+                alertDialogBuilder
+                        .setNeutralButton("離開",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface,int i){
+                                Intent intent = new Intent();
+                                intent.setClass(SchulteGridPro.this,GameHome.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
+        //小提示按鈕的觸發事件
+        ImageView button5 = findViewById(R.id.imagetips);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SchulteGridPro.this)
+                        .setTitle("小提示頁面")
+                        .setMessage("請依照數字順序點選");
+                LayoutInflater inflater = SchulteGridPro.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_memory_tips, null));
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
         one=(ImageView)findViewById(R.id.one);
         two=(ImageView)findViewById(R.id.two);
         three=(ImageView)findViewById(R.id.three);
@@ -73,11 +103,7 @@ public class SchulteGridPro extends AppCompatActivity {
         fifteen=(ImageView)findViewById(R.id.fifteen);
         sixteen=(ImageView)findViewById(R.id.sixteen);
 
-
-
         ImageView[] NumArray = {one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen};
-
-
         Collections.shuffle(Arrays.asList(NumArray));
 
         for(int i = 0; i < ImageArray.length; i++){
@@ -85,12 +111,6 @@ public class SchulteGridPro extends AppCompatActivity {
             String s = String.valueOf(i);
             NumArray[i].setTag(s);
         }
-
-
-
-        //Listener 等待使用者點擊此事件
-        //override 覆蓋掉原本android studio 上層物件
-
 
         one.setOnClickListener(new View.OnClickListener(){
             @Override

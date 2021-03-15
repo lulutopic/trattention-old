@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Chronometer;
@@ -42,7 +43,11 @@ public class MemoryGamePro extends AppCompatActivity {
     int clickedFirst,clickedSecond;
     int cardNumber=1;
     int questionCount = 0;
+    int i=0;
     Timer timertest = new Timer();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class MemoryGamePro extends AppCompatActivity {
 
 
         //game
+        //題目顏色
         iv_100=(ImageView)findViewById(R.id.iv_100);
         iv_11=(ImageView)findViewById(R.id.iv_11);
         iv_12=(ImageView)findViewById(R.id.iv_12);
@@ -126,6 +132,30 @@ public class MemoryGamePro extends AppCompatActivity {
 
         //Listener 等待使用者點擊此事件
         //override 覆蓋掉原本android studio 上層物件
+
+
+
+        ImageView right_arrow = findViewById(R.id.right_arrow);
+        ImageView[] imageArray = {iv_11,iv_12,iv_13,iv_14,
+                iv_21,iv_22,iv_23,iv_24,
+                iv_31,iv_32,iv_33,iv_34,
+                iv_41,iv_42,iv_43,iv_44,
+                iv_100};
+
+
+
+
+        right_arrow.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                i++;
+                ImageView temp=imageArray[i];
+                temp.setImageResource(R.drawable.memory210);
+
+            }
+        });
+
+
         iv_11.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

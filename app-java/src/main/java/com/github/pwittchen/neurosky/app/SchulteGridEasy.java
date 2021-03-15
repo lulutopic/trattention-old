@@ -1,14 +1,17 @@
 package com.github.pwittchen.neurosky.app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
@@ -18,24 +21,15 @@ import java.util.Collections;
 public class SchulteGridEasy extends AppCompatActivity {
     private Long startTime; //初始時間
     private Chronometer timer; //已經過時間
-    private Handler handler = new Handler();
+    private Handler handler = new Handler();//執行緒
 
-
-
-    //圖片的id位置
+    //圖片的變數
     ImageView one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen;
 
     //圖片的檔案引入陣列
     int[] ImageArray = {R.drawable.grid1,R.drawable.grid2,R.drawable.grid3,R.drawable.grid4,R.drawable.grid5,R.drawable.grid6,R.drawable.grid7
     ,R.drawable.grid8,R.drawable.grid9,R.drawable.grid10,R.drawable.grid11,R.drawable.grid12,R.drawable.grid13,R.drawable.grid14
     ,R.drawable.grid15,R.drawable.grid16};
-
-
-
-
-    //array for the images
-
-
 
     int count = 0;
 
@@ -48,12 +42,52 @@ public class SchulteGridEasy extends AppCompatActivity {
         timer = (Chronometer) findViewById(R.id.timer);
         //取得目前時間
         startTime = System.currentTimeMillis();
-        //設定定時要執行的方法
+        //設定計時器的執行緒結束
         handler.removeCallbacks(updateTimer);
         //設定Delay的時間
         handler.postDelayed(updateTimer, 10);
 
-        //game
+        //暫停按鈕的觸發事件
+        ImageView button4 = findViewById(R.id.imagepause);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SchulteGridEasy.this);
+                LayoutInflater inflater = SchulteGridEasy.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_stop_button, null));
+                alertDialogBuilder
+                        .setNeutralButton("離開",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface,int i){
+                                Intent intent = new Intent();
+                                intent.setClass(SchulteGridEasy.this,GameHome.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
+        //小提示按鈕的觸發事件
+        ImageView button5 = findViewById(R.id.imagetips);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SchulteGridEasy.this)
+                        .setTitle("小提示頁面")
+                        .setMessage("請依照數字順序點選");
+                LayoutInflater inflater = SchulteGridEasy.this.getLayoutInflater();
+                alertDialogBuilder.setView(inflater.inflate(R.layout.activity_game_memory_tips, null));
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
+        //get ID
         one=(ImageView)findViewById(R.id.one);
         two=(ImageView)findViewById(R.id.two);
         three=(ImageView)findViewById(R.id.three);
