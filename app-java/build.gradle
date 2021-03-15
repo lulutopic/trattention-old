@@ -33,10 +33,11 @@ dependencies {
   implementation deps.constraintlayout
   implementation deps.butterknife
   annotationProcessor deps.butterknifecompiler
+  //import mad gaze watch
+  implementation 'com.madgaze.smartwatch:development-kit-watch:1.1.0'
 
   // Import the Firebase BoM
   implementation platform('com.google.firebase:firebase-bom:26.6.0')
-  implementation 'com.madgaze.smartwatch:development-kit-watch:1.1.0'
 
 
   // Add the dependency for the Firebase SDK for Google Analytics
