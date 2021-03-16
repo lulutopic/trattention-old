@@ -3,23 +3,17 @@ package com.github.pwittchen.neurosky.app;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Chronometer;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+
 
 public class ImagePair extends AppCompatActivity {
 
@@ -37,7 +31,9 @@ public class ImagePair extends AppCompatActivity {
     private int red;
     private int blue;
     private int green;
-
+    private int i;
+    private ImageView temp;
+    private ImageView collect;
 
     private TextView ImageButtonA;
     private TextView ImageButtonB;
@@ -69,6 +65,7 @@ public class ImagePair extends AppCompatActivity {
 
     }
 
+
     //監聽事件的函式
     private void setupViewsAndListeners(){
         //選項Ａ的監聽事件
@@ -87,6 +84,39 @@ public class ImagePair extends AppCompatActivity {
                 }
             }
         });
+
+//        ImageView right_arrow = findViewById(R.id.right_arrow);
+//        ImageView ok = findViewById(R.id.ok);
+//
+//        right_arrow.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                int j=i;
+//                if(i==3 ||i==7||i==11||i==15) {
+//                    i = i-3;
+//                }
+//                else {
+//                    i ++ ;
+//                }
+//                temp = ArrayList[i];
+//                ImageView prev = ArrayList[j];
+//                if (prev != collect) {
+//                    prev.setImageResource(R.drawable.memoryback);
+//                }
+//                temp.setImageResource(R.drawable.optionabackground);
+//            };
+//        });
+//
+//        ok.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                int theCard = Integer.parseInt((String)temp.getTag());
+//                doStuff(temp,theCard);
+//                collect=temp;
+//
+//
+//            }
+//        });
 
         ImageButtonB.setOnClickListener(new View.OnClickListener(){
             //選項Ｂ的監聽事件
