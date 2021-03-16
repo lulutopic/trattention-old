@@ -24,12 +24,11 @@ public class SchulteGridEasy extends AppCompatActivity {
     private Handler handler = new Handler();//執行緒
 
     //圖片的變數
-    ImageView one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen;
+    ImageView one,two,three,four,five,six,seven,eight,nine;
 
     //圖片的檔案引入陣列
     int[] ImageArray = {R.drawable.grid1,R.drawable.grid2,R.drawable.grid3,R.drawable.grid4,R.drawable.grid5,R.drawable.grid6,R.drawable.grid7
-    ,R.drawable.grid8,R.drawable.grid9,R.drawable.grid10,R.drawable.grid11,R.drawable.grid12,R.drawable.grid13,R.drawable.grid14
-    ,R.drawable.grid15,R.drawable.grid16};
+    ,R.drawable.grid8,R.drawable.grid9};
 
     int count = 0;
 
@@ -97,17 +96,10 @@ public class SchulteGridEasy extends AppCompatActivity {
         seven=(ImageView)findViewById(R.id.seven);
         eight=(ImageView)findViewById(R.id.eight);
         nine=(ImageView)findViewById(R.id.nine);
-        ten=(ImageView)findViewById(R.id.ten);
-        eleven=(ImageView)findViewById(R.id.eleven);
-        twelve=(ImageView)findViewById(R.id.twelve);
-        thirteen=(ImageView)findViewById(R.id.thirteen);
-        fourteen=(ImageView)findViewById(R.id.fourteen);
-        fifteen=(ImageView)findViewById(R.id.fifteen);
-        sixteen=(ImageView)findViewById(R.id.sixteen);
 
 
 
-        ImageView[] NumArray = {one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen};
+        ImageView[] NumArray = {one,two,three,four,five,six,seven,eight,nine};
 
 
         Collections.shuffle(Arrays.asList(NumArray));
@@ -188,57 +180,6 @@ public class SchulteGridEasy extends AppCompatActivity {
                 doStuff(nine,theCard);
             }
         });
-        ten.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(ten,theCard);
-            }
-        });
-        eleven.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(eleven,theCard);
-            }
-        });
-        twelve.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(twelve,theCard);
-            }
-        });
-        thirteen.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(thirteen,theCard);
-            }
-        });
-        fourteen.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(fourteen,theCard);
-            }
-        });
-        fifteen.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(fifteen,theCard);
-            }
-        });
-        sixteen.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int theCard = Integer.parseInt((String)view.getTag());
-                doStuff(sixteen,theCard);
-            }
-        });
-
-
     }
 
     private void doStuff(ImageView iv, int card){
@@ -253,7 +194,7 @@ public class SchulteGridEasy extends AppCompatActivity {
     }
 
     private void checkEnd() {
-        if (count == 16) {
+        if (count == 9) {
             //頁面跳轉
             Intent intent = new Intent();
             intent.setClass(SchulteGridEasy.this, SchulteGridMed.class);
