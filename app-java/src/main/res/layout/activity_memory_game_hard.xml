@@ -27,7 +27,7 @@
             android:id="@+id/imagetips"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/game_header_tips"
+            app:srcCompat="@drawable/tips"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"/>
 
@@ -137,14 +137,16 @@
                     android:layout_height="64dp"
                     android:scaleType="center"
                     android:src="@drawable/ok"
-                    android:layout_marginLeft="52dp" />
+                    android:layout_marginLeft="52dp"
+                    />
                 <ImageView
-                    android:id="@+id/right_arrow"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:scaleType="center"
                     android:src="@drawable/right_arrow"
-                    android:layout_marginLeft="52dp" />
+                    android:layout_marginLeft="52dp"
+
+                    />
 
 
             </LinearLayout>
